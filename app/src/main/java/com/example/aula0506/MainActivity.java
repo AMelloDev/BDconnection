@@ -46,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
         db.execSQL("CREATE TABLE IF NOT EXISTS notas (id INTEGER PRIMARY KEY AUTOINCREMENT, txt TEXT)");
 
         buttonInsere.setOnClickListener(v->{
-            insereNota((editText.toString().trim()));
+            insereNota(editText.getText().toString());
         });
         listview.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View View, int i, long l ) {
-                int id = notas.g
-                db.delete("notas", "id=?", new String[]{Integer.toString()});
-                Toast.makeText(getApplicationContext(),Integer.toString(i),Toast.LENGTH_LONG)
+                Nota n = (Nota)adapterView.getItemAtPosition(i);
+                db.delete("notas", "id=?", new String[]{Integer.toString(n.id)});
+                Toast.makeText(getApplicationContext(),Integer.toString(i),Toast.LENGTH_LONG).show();
 
             }
         });
